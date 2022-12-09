@@ -13,3 +13,5 @@
 
 # IDEA插件
 
+- Maven-Helper
+
