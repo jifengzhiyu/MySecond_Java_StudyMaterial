@@ -10,8 +10,13 @@
 # 库
 
 - 数据库链接池Druid
+- mybatis：<groupId>org.mybatis</groupId> <artifactId>mybatis</artifactId>+配置文件
+- mysql驱动：<groupId>mysql</groupId><artifactId>mysql-connector-java</artifactId>
+- junit单元测试：<groupId>junit</groupId> <artifactId>junit</artifactId>
+- Logback-core依赖：<groupId>ch.qos.logback</groupId> <artifactId>logback-core</artifactId> +配置文件（彩色log）
 
 # IDEA插件
 
-- Maven-Helper
+- Maven-Helper--快速进行Maven指令操作
+- MyBatisX--写接口自动生成映射文件的statment；映射文件和接口快速定位
 

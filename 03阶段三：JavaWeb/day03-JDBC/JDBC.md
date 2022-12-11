@@ -751,8 +751,6 @@ public void testPreparedStatement() throws  Exception {
 select * from tb_user where username = 'sjdljfld' and password = '\'or \'1\' = \'1'
 ```
 
-
-
 #### 3.6.5  PreparedStatement原理
 
 > PreparedStatement 好处：
