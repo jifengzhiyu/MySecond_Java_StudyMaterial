@@ -10,8 +10,61 @@
 # 依赖
 
 - 数据库链接池Druid
-- mybatis：<groupId>org.mybatis</groupId> <artifactId>mybatis</artifactId>+配置文件
-- mysql驱动：<groupId>mysql</groupId><artifactId>mysql-connector-java</artifactId>
+- mybatis：
+
+```xml
+mybatis-config.xml
+
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration> 
+  <!--起别名--> 
+  <typeAliases> 
+    <package name="com.itheima.pojo"/>
+  </typeAliases>
+  
+  <environments default="development"> 
+    <environment id="development">
+      <transactionManager type="JDBC"/> 
+			<dataSource type="POOLED">
+        <property name="driver" value="com.mysql.jdbc.Driver"/> 
+        <!--useSSL:关闭SSL安全连接 性能更高 
+				useServerPrepStmts:开启预编译功能
+ 				&amp; 等同于 & ,xml配置文件中不能直接写 &符号
+ 				--> 
+        <property name="url" value="jdbc:mysql:///db1? useSSL=false&amp;useServerPrepStmts=true"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+      </dataSource> 
+    </environment>
+  </environments>
+  <mappers> 
+    <!--扫描mapper-->
+    <package name="com.itheima.mapper"/>
+  </mappers>
+</configuration> 
+```
+
+```xml
+<dependency> 
+  <groupId>org.mybatis</groupId> 
+  <artifactId>mybatis</artifactId>
+  <version>3.5.5</version> 
+</dependency>
+```
+
+- mysql驱动：
+
+````xml
+<dependency>
+  <groupId>mysql</groupId> 
+  <artifactId>mysql-connector-java</artifactId> 
+  <version>5.1.34</version>
+</dependency>
+````
+
 - junit单元测试：<groupId>junit</groupId> <artifactId>junit</artifactId>
 - Logback-core依赖：<groupId>ch.qos.logback</groupId> <artifactId>logback-core</artifactId> +配置文件（彩色log）
 - Servlet依赖
