@@ -13,7 +13,7 @@
 - mybatis：
 
 ```xml
-mybatis-config.xml
+<!--mybatis-config.xml 并将该文件放置在 resources 下-->
 
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE configuration 
@@ -77,6 +77,39 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   <!--此处为什么需要添加该标签? provided指的是在编译和测试过程中有效,最后生成的war包时不会加入 因为Tomcat的lib目录中已经有servlet-api这个jar包，如果在生成war包的时候生效就会和Tomcat中的jar包冲突，导致报错 -->
   <scope>provided</scope>
 </dependency>
+```
+
+-  JSP依赖
+
+```xml
+<dependency> 
+  <groupId>javax.servlet.jsp</groupId>
+  <artifactId>jsp-api</artifactId>
+  <version>2.2</version>
+  <scope>provided</scope>
+</dependency>
+<!--该依赖的 scope 必须设置为 provided ，因为 tomcat 中有这个jar包了，所以在打包时我们是不希望将该依赖打进到我们
+工程的war包中。-->
+```
+
+- JSP标准标签库(Jsp Standarded Tag Library) ，使用标签取代JSP页面上的Java代码
+
+```xml
+<dependency> 
+  <groupId>jstl</groupId> 
+  <artifactId>jstl</artifactId>
+  <version>1.2</version>
+</dependency> 
+
+<dependency>
+  <groupId>taglibs</groupId>
+  <artifactId>standard</artifactId>
+  <version>1.1.2</version>
+</dependency> 
+<!-->
+在JSP页面上引入JSTL标签库
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+-->
 ```
 
 
