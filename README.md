@@ -112,6 +112,28 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 -->
 ```
 
+- Fastjson 是阿里巴巴提供的一个Java语言编写的高性能功能完善的 JSON 库，是目前Java语言中最快的 JSON 库，可以实
+
+  现 Java 对象和 JSON 字符串的相互转换。
+
+```xml
+<dependency> 
+  <groupId>com.alibaba</groupId> 
+  <artifactId>fastjson</artifactId>
+  <version>1.2.62</version>
+</dependency>
+
+<!--
+Java对象转JSON
+String jsonStr = JSON.toJSONString(obj);
+
+JSON字符串转Java对象
+User user = JSON.parseObject(jsonStr, User.class);
+-->
+```
+
+
+
 
 
 # Maven插件
