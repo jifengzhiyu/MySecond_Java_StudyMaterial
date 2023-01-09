@@ -44,17 +44,17 @@
           //public Integer(int value)：根据 int 值创建 Integer 对象(过时)
           Integer i1 = new Integer(100);
           System.out.println(i1);
-
+  
           //public Integer(String s)：根据 String 值创建 Integer 对象(过时)
           Integer i2 = new Integer("100");
   //        Integer i2 = new Integer("abc"); //NumberFormatException
           System.out.println(i2);
           System.out.println("--------");
-
+  
           //public static Integer valueOf(int i)：返回表示指定的 int 值的 Integer 实例
           Integer i3 = Integer.valueOf(100);
           System.out.println(i3);
-
+  
           //public static Integer valueOf(String s)：返回一个保存指定值的Integer对象 String
           Integer i4 = Integer.valueOf("100");
           System.out.println(i4);
@@ -147,22 +147,22 @@
       public static void main(String[] args) {
           //定义一个字符串
           String s = "91 27 46 38 50";
-
+  
           //把字符串中的数字数据存储到一个int类型的数组中
           String[] strArray = s.split(" ");
   //        for(int i=0; i<strArray.length; i++) {
   //            System.out.println(strArray[i]);
   //        }
-
+  
           //定义一个int数组，把 String[] 数组中的每一个元素存储到 int 数组中
           int[] arr = new int[strArray.length];
           for(int i=0; i<arr.length; i++) {
               arr[i] = Integer.parseInt(strArray[i]);
           }
-
+  
           //对 int 数组进行排序
           Arrays.sort(arr);
-
+  
         	for(int i=0; i<arr.length; i++){
            System.out.print(arr[i] + " ");
         	}
@@ -335,7 +335,7 @@
           //1 2 3 4 5
           bubbleSort(arr);
       }
-
+  
       private static void bubbleSort(int[] arr) {
           //外层循环控制的是次数 比数组的长度少一次.
           for (int i = 0; i < arr.length -1; i++) {
@@ -350,10 +350,10 @@
                   }
               }
           }
-
+  
           printArr(arr);
       }
-
+  
       private static void printArr(int[] arr) {
           for (int i = 0; i < arr.length; i++) {
               System.out.print(arr[i] + " ");
@@ -415,9 +415,7 @@
 
 - 异常的体系结构
 
-  ![01_异常体系结构](E:/%E8%B0%83%E6%95%B4%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%86%E9%A2%912/day05-API&%E5%BC%82%E5%B8%B8/%E7%AC%94%E8%AE%B0/img/01_%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png)
-
-### 4.2 编译时异常和运行时异常的区别（记忆）
+  ![01_异常体系结构](img/01_%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png)4.2 编译时异常和运行时异常的区别（记忆)
 
 - 编译时异常
 
@@ -431,7 +429,7 @@
 
 - 图示
 
-  ![02_编译时异常和运行时异常](E:/%E8%B0%83%E6%95%B4%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%86%E9%A2%912/day05-API&%E5%BC%82%E5%B8%B8/%E7%AC%94%E8%AE%B0/img/02_%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8.png)
+  ![02_编译时异常和运行时异常](img/02_%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8.png)
 
 ### 4.3 JVM默认处理异常的方式（理解）
 
@@ -445,9 +443,7 @@
 
 我们调bug时,可以根据提示,找到异常出现的位置,分析原因,修改异常代码
 
-![03_查看异常信息](E:/%E8%B0%83%E6%95%B4%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%86%E9%A2%912/day05-API&%E5%BC%82%E5%B8%B8/%E7%AC%94%E8%AE%B0/img/03_%E6%9F%A5%E7%9C%8B%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF.png)
-
-### 4.5 throws方式处理异常（应用）
+![03_查看异常信息](img/03_%E6%9F%A5%E7%9C%8B%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF.png)4.5 throws方式处理异常（应用）
 
 - 定义格式
 

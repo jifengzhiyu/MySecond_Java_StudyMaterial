@@ -29,7 +29,7 @@
           //public Date()：分配一个 Date对象，并初始化，以便它代表它被分配的时间，精确到毫秒
           Date d1 = new Date();
           System.out.println(d1);
-
+  
           //public Date(long date)：分配一个 Date对象，并将其初始化为表示从标准基准时间起指定的毫秒数
           long date = 1000*60*60;
           Date d2 = new Date(date);
@@ -54,16 +54,16 @@
       public static void main(String[] args) {
           //创建日期对象
           Date d = new Date();
-
+  
           //public long getTime():获取的是日期对象从1970年1月1日 00:00:00到现在的毫秒值
   //        System.out.println(d.getTime());
   //        System.out.println(d.getTime() * 1.0 / 1000 / 60 / 60 / 24 / 365 + "年");
-
+  
           //public void setTime(long time):设置时间，给的是毫秒值
   //        long time = 1000*60*60;
           long time = System.currentTimeMillis();
           d.setTime(time);
-
+  
           System.out.println(d);
       }
   }
@@ -103,7 +103,7 @@
           String s = sdf.format(d);
           System.out.println(s);
           System.out.println("--------");
-
+  
           //从 String 到 Date
           String ss = "2048-08-09 11:11:11";
           //ParseException
@@ -132,43 +132,43 @@
       public static void main(String[] args) throws ParseException {
           //开始时间：2020年11月11日 0:0:0
           //结束时间：2020年11月11日 0:10:0
-
+  
           //小贾2020年11月11日 0:03:47
           //小皮2020年11月11日 0:10:11
-
+  
           //1.判断两位同学的下单时间是否在范围之内就可以了。
-
+  
           //2.要把每一个时间都换算成毫秒值。
-
+  
           String start = "2020年11月11日 0:0:0";
           String end = "2020年11月11日 0:10:0";
-
+  
           String jia = "2020年11月11日 0:03:47";
           String pi = "2020年11月11日 0:10:11";
-
+  
           SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
           long startTime = sdf.parse(start).getTime();
           long endTime = sdf.parse(end).getTime();
-
+  
   //        System.out.println(startTime);
   //        System.out.println(endTime);
           long jiaTime = sdf.parse(jia).getTime();
           long piTime = sdf.parse(pi).getTime();
-
+  
           if(jiaTime >= startTime && jiaTime <= endTime){
               System.out.println("小贾同学参加上了秒杀活动");
           }else{
               System.out.println("小贾同学没有参加上秒杀活动");
           }
-
+  
           System.out.println("------------------------");
-
+  
           if(piTime >= startTime && piTime <= endTime){
               System.out.println("小皮同学参加上了秒杀活动");
           }else{
               System.out.println("小皮同学没有参加上秒杀活动");
           }
-
+  
       }
     
   }
@@ -194,7 +194,7 @@
 
 ### 2.2集合类体系结构【理解】
 
-![01_集合类体系结构图](E:/%E8%B0%83%E6%95%B4%E4%B9%8B%E5%90%8E%E7%9A%84%E8%A7%86%E9%A2%912/day06-API&%E9%9B%86%E5%90%88/%E7%AC%94%E8%AE%B0/img/01_%E9%9B%86%E5%90%88%E7%B1%BB%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%9B%BE.png)
+![01_集合类体系结构图](img/01_%E9%9B%86%E5%90%88%E7%B1%BB%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%9B%BE.png)
 
 ### 2.3Collection 集合概述和使用【应用】
 
@@ -497,5 +497,5 @@
   }
   ```
 
-  ​
+  
 
