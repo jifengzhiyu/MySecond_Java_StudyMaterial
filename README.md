@@ -9,8 +9,9 @@
 
 # 依赖
 
-- 数据库链接池Druid
-- mybatis：
+## 数据库链接池Druid
+
+## mybatis
 
 ```xml
 <!--mybatis-config.xml 并将该文件放置在 resources 下-->
@@ -55,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </dependency>
 ```
 
-- mysql驱动：
+## mysql驱动
 
 ````xml
 <dependency>
@@ -65,9 +66,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </dependency>
 ````
 
-- junit单元测试：<groupId>junit</groupId> <artifactId>junit</artifactId>
-- Logback-core依赖：<groupId>ch.qos.logback</groupId> <artifactId>logback-core</artifactId> +配置文件（彩色log）
-- Servlet依赖
+## junit单元测试
+
+<groupId>junit</groupId> <artifactId>junit</artifactId>
+
+## Logback-core依赖
+
+<groupId>ch.qos.logback</groupId> <artifactId>logback-core</artifactId> +配置文件（彩色log）
+
+## Servlet依赖
 
 ```xml
 <dependency>
@@ -79,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </dependency>
 ```
 
--  JSP依赖
+## JSP依赖
 
 ```xml
 <dependency> 
@@ -92,7 +99,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 工程的war包中。-->
 ```
 
-- JSP标准标签库(Jsp Standarded Tag Library) ，使用标签取代JSP页面上的Java代码
+## JSP标准标签库
+
+(Jsp Standarded Tag Library) 
+
+- 使用标签取代JSP页面上的Java代码
 
 ```xml
 <dependency> 
@@ -112,9 +123,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 -->
 ```
 
-- Fastjson 是阿里巴巴提供的一个Java语言编写的高性能功能完善的 JSON 库，是目前Java语言中最快的 JSON 库，可以实
+## Fastjson JSON 库
 
-  现 Java 对象和 JSON 字符串的相互转换。
+是阿里巴巴提供的一个Java语言编写的高性能功能完善的 ，是目前Java语言中最快的 JSON 库，可以实
+
+现 Java 对象和 JSON 字符串的相互转换。
 
 ```xml
 <dependency> 
@@ -130,6 +143,19 @@ String jsonStr = JSON.toJSONString(obj);
 JSON字符串转Java对象
 User user = JSON.parseObject(jsonStr, User.class);
 -->
+```
+
+## Spring 
+
+```xml
+<dependencies>
+    <!--导入spring的坐标spring-context，对应版本是5.2.10.RELEASE-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.2.10.RELEASE</version>
+    </dependency>
+</dependencies>
 ```
 
 
