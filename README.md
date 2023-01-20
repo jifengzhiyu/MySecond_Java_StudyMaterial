@@ -11,6 +11,24 @@
 
 ## 数据库链接池Druid
 
+```xml
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>druid</artifactId>
+    <version>1.1.16</version>
+</dependency>
+```
+
+## c3p0连接池
+
+```xml
+<dependency>
+    <groupId>c3p0</groupId>
+    <artifactId>c3p0</artifactId>
+    <version>0.9.1.2</version>
+</dependency>
+```
+
 ## mybatis
 
 ```xml
@@ -56,6 +74,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </dependency>
 ```
 
+```xml
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>1.3.0</version>
+</dependency>
+```
+
 ## mysql驱动
 
 ````xml
@@ -68,7 +94,23 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 ## junit单元测试
 
-<groupId>junit</groupId> <artifactId>junit</artifactId>
+```xml
+<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.12</version>
+</dependency>
+```
+
+```xml
+<!--spring整合junit-->
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-test</artifactId>
+  <version>5.1.9.RELEASE</version>
+</dependency>
+<!--junit的依赖至少要是4.12版本,可以是4.13等版本-->
+```
 
 ## Logback-core依赖
 
@@ -158,7 +200,36 @@ User user = JSON.parseObject(jsonStr, User.class);
 </dependencies>
 ```
 
+## javax.annotation
 
+@PostConstruct和@PreDestroy注解是jdk中提供的注解，从jdk9开始，jdk中的javax.annotation包被移除了，也就是说这两个注解就用不了了，可以额外导入一下依赖解决这个问题。
+
+```xml
+<dependency>
+  <groupId>javax.annotation</groupId>
+  <artifactId>javax.annotation-api</artifactId>
+  <version>1.3.2</version>
+</dependency>
+```
+
+## AOP
+
+```xml
+<dependencies>
+    <!--spring核心依赖，会将spring-aop传递进来-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.2.10.RELEASE</version>
+    </dependency>
+<!--切入点表达式依赖，目的是找到切入点方法，也就是找到要增强的方法-->
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.9.4</version>
+    </dependency>
+</dependencies>
+```
 
 
 

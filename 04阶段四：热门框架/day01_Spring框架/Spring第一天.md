@@ -388,8 +388,6 @@ public class BookServiceImpl implements BookService {
 
 > 最后给大家说明一下：在我们的实际开发当中，绝大部分的Bean是单例的，也就是说绝大部分Bean不需要配置scope属性。
 
-Spring不管理prototype
-
 ## 四、Bean的实例化
 
 ### 问题导入
