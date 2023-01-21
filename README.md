@@ -231,11 +231,46 @@ User user = JSON.parseObject(jsonStr, User.class);
 </dependencies>
 ```
 
+## SpringMVC+Servlet
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+        <scope>provided</scope>
+    </dependency>
+  <!--导入spring-webmvc坐标自动依赖spring相关坐标-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.2.10.RELEASE</version>
+    </dependency>
+</dependencies>
+```
+
+## jackson
+
+- 添加json数据转换相关坐标
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.9.0</version>
+</dependency>
+```
+
 
 
 # Maven插件
 
+## Tomcat
+
 - 集成本地Tomcat8.5用的多；Tomcat插件支持到7
+- tomcat 8.5版本之后GET请求就不再出现中文乱码问题，但是我们使用的是tomcat7插件，所以会出现GET请求中文乱码问题。
+- 在pom.xml添加tomcat7插件处配置UTF-8字符集，解决GET请求中文乱码问题。
 
 ```xml
 <build> 
@@ -257,6 +292,24 @@ User user = JSON.parseObject(jsonStr, User.class);
 </build>
 ```
 
+```xml
+<!--解决GET请求中文乱码问题-->
+<build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <port>80</port><!--tomcat端口号-->
+          <path>/</path> <!--虚拟目录-->
+          <uriEncoding>UTF-8</uriEncoding><!--访问路径编解码字符集-->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+```
+
 
 
 # IDEA插件
@@ -264,3 +317,12 @@ User user = JSON.parseObject(jsonStr, User.class);
 - Maven-Helper--快速进行Maven指令操作（快速启动项目，选中项目，右键-->Run/Debug Maven --> tomcat7:run）。
 - MyBatisX--写接口自动生成映射文件的statment；映射文件和接口快速定位
 - 
+
+# APP
+
+## IDEA
+
+## Navicat
+
+## PostMan
+
