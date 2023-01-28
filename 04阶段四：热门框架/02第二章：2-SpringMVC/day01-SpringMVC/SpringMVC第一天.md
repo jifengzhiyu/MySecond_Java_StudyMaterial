@@ -20,6 +20,8 @@ SpringMVC框架有什么优点？
 
 #### 1.1 SpringMVC概述
 
+Spring是IOC和AOP的容器框架，SpringMVC是基于Spring功能之上添加的Web框架，想用SpringMVC必须先依赖Spring。
+
 1. SpringMVC是一种基于Java实现MVC模型的轻量级Web框架
 2. 优点
    1. 使用简单，开发便捷（相比于Servlet）
