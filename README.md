@@ -82,6 +82,30 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </dependency>
 ```
 
+## mybatisPlus
+
+```xml
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-boot-starter</artifactId>
+    <version>3.4.1</version>
+</dependency>
+
+<!--代码生成器-->
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-generator</artifactId>
+    <version>3.4.1</version>
+</dependency>
+
+<!--velocity模板引擎-->
+<dependency>
+    <groupId>org.apache.velocity</groupId>
+    <artifactId>velocity-engine-core</artifactId>
+    <version>2.3</version>
+</dependency>
+```
+
 ## mysql驱动
 
 ````xml
@@ -400,6 +424,18 @@ User user = JSON.parseObject(jsonStr, User.class);
       </plugin>
     </plugins>
   </build>
+```
+
+##  Lombok插件
+
+简化POJO实体类开发
+
+```xml
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.12</version>
+</dependency>
 ```
 
 
