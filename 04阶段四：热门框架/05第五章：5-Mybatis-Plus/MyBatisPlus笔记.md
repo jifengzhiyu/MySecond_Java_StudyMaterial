@@ -984,3 +984,12 @@ autoGenerator.setStrategy(strategyConfig);
 
 > 说明：在资料中也提供了CodeGenerator代码生成器类，根据实际情况修改后可以直接使用。
 
+## 有关驼峰下划线字段映射
+
+Mybatis:需要配置
+
+https://blog.csdn.net/weixin_43973404/article/details/118788170
+
+MybatisPlus:**mybatisPlus默认开启驼峰命名映射**
+
+https://blog.csdn.net/A1916403680/article/details/127162166

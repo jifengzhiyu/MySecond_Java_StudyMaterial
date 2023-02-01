@@ -617,6 +617,12 @@ create table student (
 );
 ```
 
+MySQL中的字段类型对应于Java对象中的数据类型
+
+https://blog.csdn.net/qq_34115899/article/details/114314628
+
+![image-20230130194124551](assets/image-20230130194124551.png)
+
 ### 5.4  删除表
 
 * **删除表**

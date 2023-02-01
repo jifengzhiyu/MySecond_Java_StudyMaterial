@@ -17,6 +17,12 @@
     <artifactId>druid</artifactId>
     <version>1.1.16</version>
 </dependency>
+
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>druid-spring-boot-starter</artifactId>
+    <version>1.1.23</version>
+</dependency>
 ```
 
 ## c3p0连接池
@@ -191,9 +197,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 ## Fastjson JSON 库
 
-是阿里巴巴提供的一个Java语言编写的高性能功能完善的 ，是目前Java语言中最快的 JSON 库，可以实
-
-现 Java 对象和 JSON 字符串的相互转换。
+是阿里巴巴提供的一个Java语言编写的高性能功能完善的 ，是目前Java语言中最快的 JSON 库，可以实现 Java 对象和 JSON 字符串的相互转换。
 
 ```xml
 <dependency> 
@@ -378,7 +382,29 @@ User user = JSON.parseObject(jsonStr, User.class);
 </dependency>
 ```
 
+## commons-lang
 
+CommonsLang是对JDK中java.lang包的补充，提供了各种各样的Utilities工具类
+
+```xml
+<dependency>
+  <groupId>commons-lang</groupId>
+  <artifactId>commons-lang</artifactId>
+  <version>2.6</version> 
+</dependency>
+```
+
+##  Lombok
+
+简化POJO实体类开发，@Data，@Slf4j
+
+```xml
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.12</version>
+</dependency>
+```
 
 # Maven插件
 
@@ -426,16 +452,22 @@ User user = JSON.parseObject(jsonStr, User.class);
   </build>
 ```
 
-##  Lombok插件
+## spring-boot-maven-plugin
 
-简化POJO实体类开发
+https://docs.spring.io/spring-boot/docs/2.2.1.RELEASE/maven-plugin/
+
+https://www.cnblogs.com/acm-bingzi/p/mavenSpringBootPlugin.html
+
+maven项目的pom.xml中，添加了*org.springframework.boot:spring-boot-maven-plugin*插件，当运行“mvn package”进行打包时，会打包成一个可以直接运行的 JAR 文件，使用“Java -jar”命令就可以直接运行。
 
 ```xml
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <version>1.18.12</version>
-</dependency>
+<plugins>
+  <plugin>
+    <groupId>org.springframework.boot</groupId> 
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <version>2.4.5</version>
+  </plugin> 
+</plugins>
 ```
 
 
