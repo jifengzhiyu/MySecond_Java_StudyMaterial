@@ -43,3 +43,46 @@
 
 (7)关闭打开浏览器后，因为浏览器的cookie已被销毁，所以就没有JESSIONID的数据，服务端获取到的session就是一个全新的session对象
 
+# 2.lambda+Stream
+
+```java
+List<DishFlavor> flavors = dishDto.getFlavors();
+flavors = flavors.stream().map((item) -> {
+    item.setDishId(dishId);
+    return item;
+}).collect(Collectors.toList());
+```
+
+Stream 执行流程:
+ * ① Stream的实例化
+
+   ```java
+   flavors.stream()
+   
+   java.util.Collection<E> @Contract(pure = true) 
+   public java.util.stream.Stream<E> stream()
+   Returns a sequential Stream with this collection as its source.
+   ```
+
+ * ② 一系列的中间操作（过滤、映射、...)
+
+   ```java
+   .map((item) -> {
+       item.setDishId(dishId);
+       return item;
+   })
+        
+   映射：
+   //map(Function f)——接收一个函数作为参数，将元素转换成其他形式或提取信息，该函数会被应用到每个元素上，并将其映射成一个新的元素。
+   public abstract <R> Stream<R> map(java.util.function.Function<? super T, ? extends R> mapper)
+   Returns a stream consisting of the results of applying the given function to the elements of this stream.
+   ```
+
+ * ③ 终止操作
+
+   ```java
+   .collect(Collectors.toList());
+   
+   收集：
+   //collect(Collector c)——将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
+   ```
