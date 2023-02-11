@@ -86,3 +86,169 @@ Stream 执行流程:
    收集：
    //collect(Collector c)——将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
    ```
+
+# 3.put delete有请求体？
+
+- PUT有请求体
+- delete无请求体
+
+# 4.Dto交互
+
+## 后端Dto接收数据
+
+保存套餐信息
+
+| 请求     | 说明         |
+| -------- | ------------ |
+| 请求方式 | POST         |
+| 请求路径 | /setmeal     |
+| 请求参数 | json格式数据 |
+
+传递的json格式数据如下: 
+
+```json
+{
+    "name":"营养超值工作餐",
+    "categoryId":"1399923597874081794",
+    "price":3800,
+    "code":"",
+    "image":"9cd7a80a-da54-4f46-bf33-af3576514cec.jpg",
+    "description":"营养超值工作餐",
+    "dishList":[],
+    "status":1,
+    "idType":"1399923597874081794",
+    "setmealDishes":[
+    	{"copies":2,"dishId":"1423329009705463809","name":"米饭","price":200},
+    	{"copies":1,"dishId":"1423328152549109762","name":"可乐","price":500},
+    	{"copies":1,"dishId":"1397853890262118402","name":"鱼香肉丝","price":3800}
+    ]
+}
+```
+
+```java
+		/**
+     * 新增套餐
+     * @param setmealDto
+     * @return
+     */
+    @PostMapping
+    public R<String> save(@RequestBody SetmealDto setmealDto){
+        log.info("套餐信息：{}",setmealDto);
+
+        setmealService.saveWithDish(setmealDto);
+
+        return R.success("新增套餐成功");
+    }
+
+/**
+     * 新增套餐，同时需要保存套餐和菜品的关联关系
+     * @param setmealDto
+     */
+    @Transactional
+    public void saveWithDish(SetmealDto setmealDto) {
+        //保存套餐的基本信息，操作setmeal，执行insert操作
+        this.save(setmealDto);
+
+        List<SetmealDish> setmealDishes = setmealDto.getSetmealDishes();
+        setmealDishes.stream().map((item) -> {
+            item.setSetmealId(setmealDto.getId());
+            return item;
+        }).collect(Collectors.toList());
+
+        //保存套餐和菜品的关联信息，操作setmeal_dish,执行insert操作
+        setmealDishService.saveBatch(setmealDishes);
+    }
+```
+
+```java
+@Data
+public class SetmealDto extends Setmeal {
+
+    private List<SetmealDish> setmealDishes;
+
+    private String categoryName;
+}
+```
+
+## 后端Dto返回数据
+
+```java
+/**
+     * 根据条件查询对应的菜品数据
+     * @param dish
+     * @return
+     */
+    /*@GetMapping("/list")
+    public R<List<Dish>> list(Dish dish){
+        //构造查询条件
+        LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(dish.getCategoryId() != null ,Dish::getCategoryId,dish.getCategoryId());
+        //添加条件，查询状态为1（起售状态）的菜品
+        queryWrapper.eq(Dish::getStatus,1);
+
+        //添加排序条件
+        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+
+        List<Dish> list = dishService.list(queryWrapper);
+
+        return R.success(list);
+    }*/
+
+    @GetMapping("/list")
+    public R<List<DishDto>> list(Dish dish){
+        //构造查询条件
+        LambdaQueryWrapper<Dish> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(dish.getCategoryId() != null ,Dish::getCategoryId,dish.getCategoryId());
+        //添加条件，查询状态为1（起售状态）的菜品
+        queryWrapper.eq(Dish::getStatus,1);
+
+        //添加排序条件
+        queryWrapper.orderByAsc(Dish::getSort).orderByDesc(Dish::getUpdateTime);
+
+        List<Dish> list = dishService.list(queryWrapper);
+
+        List<DishDto> dishDtoList = list.stream().map((item) -> {
+            DishDto dishDto = new DishDto();
+
+            BeanUtils.copyProperties(item,dishDto);
+
+            Long categoryId = item.getCategoryId();//分类id
+            //根据id查询分类对象
+            Category category = categoryService.getById(categoryId);
+
+            if(category != null){
+                String categoryName = category.getName();
+                dishDto.setCategoryName(categoryName);
+            }
+
+            //当前菜品的id
+            Long dishId = item.getId();
+            LambdaQueryWrapper<DishFlavor> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper.eq(DishFlavor::getDishId,dishId);
+            //SQL:select * from dish_flavor where dish_id = ?
+            List<DishFlavor> dishFlavorList = dishFlavorService.list(lambdaQueryWrapper);
+            dishDto.setFlavors(dishFlavorList);
+            return dishDto;
+        }).collect(Collectors.toList());
+
+        return R.success(dishDtoList);
+    }
+```
+
+```java
+@Data
+public class DishDto extends Dish {
+
+    //菜品对应的口味数据
+    private List<DishFlavor> flavors = new ArrayList<>();
+
+    private String categoryName;
+
+    private Integer copies;
+}
+```
+
+# 5. 使用事物情况
+
+- 多表一起增删改
+- 
