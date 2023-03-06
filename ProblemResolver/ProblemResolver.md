@@ -248,7 +248,22 @@ public class DishDto extends Dish {
 }
 ```
 
-# 5. 使用事物情况
+# 5. 使用事物情况，添加@Transactional地方
 
 - 多表一起增删改
-- 
+
+# 6. mysql自增id无所谓的坑
+
+https://blog.csdn.net/Seky_fei/article/details/107756788?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-107756788-blog-127441012.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-107756788-blog-127441012.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=1
+
+https://www.cnblogs.com/unrealCat/p/16042181.html
+
+- id自不自增完全没关系，id唯一的作用就是区分数据呗；他这个自增的id 不要改来改去的 没啥意思 你也不可能把信息放到这个里面
+- 一般生成i可以放时间信息进去，这样一眼就知道这玩意是啥时候产生的
+
+# 7.本地缓存技术了解
+
+- 谷歌的guava，caffeine（性能更好）
+- Spring Cache @Cacheable + Caffeine实现本地缓存
+- 如果某些数据不需要共享访问那就可以放在本地，毕竟Redis再快也不可能比本地更快
+- redis可以放在其他服务器上，谷歌缓存在项目运行的服务器上？

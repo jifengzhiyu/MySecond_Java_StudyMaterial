@@ -406,6 +406,43 @@ CommonsLang是对JDK中java.lang包的补充，提供了各种各样的Utilities
 </dependency>
 ```
 
+## Jedis
+
+ 是 Redis 的 Java 版本的客户端实现。
+
+```xml
+<dependency>
+	<groupId>redis.clients</groupId>
+	<artifactId>jedis</artifactId>
+	<version>2.8.0</version>
+</dependency>
+```
+
+## Spring Data Redis 
+
+Spring Data Redis 是 Spring 的一部分，提供了在 Spring 应用中通过简单的配置就可以访问 Redis 服务，对 Redis 底层开发包进行了高度封装。在 Spring 项目中，可以使用Spring Data Redis来简化 Redis 操作。
+
+Spring **对 Redis 客户端进行了整合**（比如jedis），提供了 Spring Data Redis，在Spring Boot项目中还提供了对应的Starter，即 spring-boot-starter-data-redis。
+
+maven坐标：
+
+~~~xml
+<dependency>
+	<groupId>org.springframework.data</groupId>
+	<artifactId>spring-data-redis</artifactId>
+	<version>2.4.8</version>
+</dependency>
+~~~
+
+Spring Boot提供了对应的Starter，maven坐标：
+
+~~~xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+~~~
+
 # Maven插件
 
 ## Tomcat
