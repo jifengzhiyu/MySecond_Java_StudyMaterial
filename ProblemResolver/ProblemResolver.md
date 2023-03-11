@@ -267,3 +267,68 @@ https://www.cnblogs.com/unrealCat/p/16042181.html
 - Spring Cache @Cacheable + Caffeine实现本地缓存
 - 如果某些数据不需要共享访问那就可以放在本地，毕竟Redis再快也不可能比本地更快
 - redis可以放在其他服务器上，谷歌缓存在项目运行的服务器上？
+
+# 8. MySQL字符集
+
+![image-20230309170152380](Pic/image-20230309170152380.png)
+
+- utf8mb4 -- UTF-8 Unicode和utf8 -- UTF-8 Unicode区别的整理
+
+  https://blog.csdn.net/z947663039/article/details/84029573
+
+  https://blog.csdn.net/themagickeyjianan/article/details/108790962
+
+  - MySQL在5.5.3之后增加了这个utf8mb4的编码，mb4就是most bytes 4的意思，专门用来兼容四字节的[unicode](https://so.csdn.net/so/search?q=unicode&spm=1001.2101.3001.7020)。好在utf8mb4是utf8的超集，除了将编码改为utf8mb4外不需要做其他转换。当然，为了节省空间，一般情况下使用utf8也就够了。
+  - 既然utf8应付日常使用完全没有问题，那为什么还要使用utf8mb4呢? 低版本的MySQL支持的utf8编码，最大字符长度为 3 字节，如果遇到 4 字节的字符就会出现错误了。
+    - 在mysql中,utf8字符集下,一个中文汉字占3个字节数;如果是gbk字符集下,一个中文汉字占2个字节数
+  - 那么utf8mb4比utf8多了什么的呢? 多了emoji编码支持.
+
+- utf8mb4_unicode_ci、utf8mb4_general_ci的区别总结
+
+  https://blog.csdn.net/weixin_45839894/article/details/128096805
+
+  - utf8mb4_general_ci : 不区分大小写， utf8mb4_general_cs 区分大小写
+    utf8mb4_bin : 将字符串每个字符串用二进制数据编译存储，区分大小写，而且可以存二进制的内容。
+    utf8mb4_unicode_ci : 校对规则仅部分支持Unicode校对规则算法,一些字符还是不能支持；utf8mb4_unicode_ci不能完全支持组合的记号
+
+  - `utf8mb4_general_ci `也适用德语、法语或者俄语，但会有不准。如果你的应用能够接受这些，那么应该使用 utf8mb4_general_ci，因为它速度快。否则，使用utf8mb4_unicode_ci，因为它比较准确。
+
+    准确性：
+
+    - utf8mb4_unicode_ci是基于标准的Unicode来排序和比较，能够在各种语言之间精确排序
+    - utf8mb4_general_ci没有实现Unicode排序规则，在遇到某些特殊语言或者字符集，排序结果可能不一致。
+
+# 9. 字符集是什么
+
+当一个人说「Unicode」，他指的是那一份行业标准。当一个人说「UTF-8」，他指的是那一套编码方案。
+
+- 字符集是一个系统支持的所有字符的集合，包括各国家文字、标点符号、图形符号、数字等。来进行字符编码。常见字符集有ASCII字符集、GBXXX字符集、Unicode字符集等
+
+  - GBXXX字符集：
+
+    GBK：最常用的中文码表。是在GB2312标准基础上的扩展**规范**，使用了双字节编码方案，共收录了21003个汉字，完全兼容GB2312标准，同时支持繁体汉字以及日韩汉字等
+
+  - Unicode字符集：
+
+  - UTF-8编码：可以用来表示**Unicode标准**中任意字符，它是电子邮件、网页及其他存储或传送文字的应用 中，优先采用的编码。互联网工程工作小组（IETF）要求所有互联网协议都必须支持UTF-8编码。它使用一至四个字节为每个字符编码
+
+    编码规则：
+
+    128个US-ASCII字符，只需一个字节编码
+
+    拉丁文等字符，需要二个字节编码
+
+    大部分常用字（含中文），使用三个字节编码
+
+    其他极少使用的Unicode辅助字符，使用四字节编码
+
+# 10.Mysql useSSL=false
+
+- jdbc:mysql://Localhost:3306/cLoud_order?useSSL=false
+- SSL(Secure Sockets Layer 安全套接字协议)，在mysql进行连接的时候,如果mysql的版本是5.7之后的版本必须要加上useSSL=false,mysql5.7以及之前的版本则不用进行添加useSSL=false，会默认为false，一般情况下都是使用useSSL=false，尤其是在将项目部署到linux上时，一定要使用useSSL=false！！！，useSSL=true是进行安全验证，一般通过证书或者令牌什么的，useSSL=false就是通过账号密码进行连接，通常使用useSSL=false！！！
+- SSL协议提供服务主要：
+  1）认证用户服务器，确保数据发送到正确的服务器；
+  2）加密数据，防止数据传输途中被窃取使用；
+  3）维护数据完整性，验证数据在传输过程中是否丢失；
+
+# 11. 回送地址127.0.0.1
