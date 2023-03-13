@@ -266,7 +266,7 @@ https://www.cnblogs.com/unrealCat/p/16042181.html
 - 谷歌的guava，caffeine（性能更好）
 - Spring Cache @Cacheable + Caffeine实现本地缓存
 - 如果某些数据不需要共享访问那就可以放在本地，毕竟Redis再快也不可能比本地更快
-- redis可以放在其他服务器上，谷歌缓存在项目运行的服务器上？
+- redis可以放在其他服务器上，谷歌缓存在项目运行的服务器上
 
 # 8. MySQL字符集
 
@@ -332,3 +332,46 @@ https://www.cnblogs.com/unrealCat/p/16042181.html
   3）维护数据完整性，验证数据在传输过程中是否丢失；
 
 # 11. 回送地址127.0.0.1
+
+# 12. Spring与redis相关的技术概念
+
+## Spring Data Redis 
+
+Spring Data Redis 是 Spring 的一部分，提供了在 Spring 应用中通过简单的配置就可以访问 Redis 服务，对 Redis 底层开发包进行了高度封装。在 Spring 项目中，可以使用Spring Data Redis来简化 Redis 操作。
+
+Spring **对 Redis 客户端进行了整合**（比如jedis），提供了 Spring Data Redis，在Spring Boot项目中还提供了对应的Starter，即 **spring-boot-starter-data-redis**。
+
+Spring Data Redis中提供了一个高度封装的类：**RedisTemplate**，针对 Jedis 客户端中大量api进行了归类封装,将同一类型操作封装为operation接口，具体分类如下：
+
+- ValueOperations：简单K-V操作
+- SetOperations：set类型数据操作
+- ZSetOperations：zset类型数据操作
+- HashOperations：针对hash类型的数据操作
+- ListOperations：针对list类型的数据操作
+
+## SpringCache
+
+**Spring Cache**是一个框架，实现了**基于注解的缓存功能**，只需要简单地加一个注解，就能实现缓存功能，大大简化我们在业务中操作缓存的代码。
+
+Spring Cache只是提供了一层抽象，底层可以切换不同的cache实现。具体就是通过**CacheManager**接口来统一不同的缓存技术。CacheManager是Spring提供的各种缓存技术抽象接口。
+
+针对不同的缓存技术需要实现不同的CacheManager：
+
+| **CacheManager**    | **描述**                           |
+| ------------------- | ---------------------------------- |
+| EhCacheCacheManager | 使用EhCache作为缓存技术            |
+| GuavaCacheManager   | 使用Google的GuavaCache作为缓存技术 |
+| RedisCacheManager   | 使用Redis作为缓存技术              |
+
+在SpringCache中提供了很多缓存操作的注解，常见的是以下的几个：
+
+| **注解**       | **说明**                                                     |
+| -------------- | ------------------------------------------------------------ |
+| @EnableCaching | 开启缓存注解功能                                             |
+| @Cacheable     | 在方法执行前spring先查看缓存中是否有数据，如果有数据，则直接返回缓存数据；若没有数据，调用方法并将方法返回值放到缓存中 |
+| @CachePut      | 将方法的返回值放到缓存中                                     |
+| @CacheEvict    | 将一条或多条数据从缓存中删除                                 |
+
+在spring boot项目中，使用缓存技术只需在项目中导入相关缓存技术的依赖包，并在启动类上使用@EnableCaching开启缓存支持即可。
+
+例如，使用Redis作为缓存技术，只需要导入**Spring data Redis**的maven坐标即可。

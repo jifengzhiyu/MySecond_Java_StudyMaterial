@@ -25,6 +25,14 @@
 </dependency>
 ```
 
+```xml
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>druid-spring-boot-starter</artifactId>
+    <version>1.1.23</version>
+</dependency>
+```
+
 ## c3p0连接池
 
 ```xml
@@ -112,7 +120,17 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </dependency>
 ```
 
-## mysql驱动
+```xml
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-boot-starter</artifactId>
+    <version>3.4.2</version>
+</dependency>
+```
+
+## mysql connector 驱动
+
+mysql-connector-java 是mysql实现的java客户端；用来和mysql交互；
 
 ````xml
 <dependency>
@@ -122,7 +140,17 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </dependency>
 ````
 
-## junit单元测试
+SpringBoot里：
+
+```xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+
+junit单元测试
 
 ```xml
 <dependency>
@@ -145,6 +173,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 ## Logback-core依赖
 
 <groupId>ch.qos.logback</groupId> <artifactId>logback-core</artifactId> +配置文件（彩色log）
+
+
 
 ## Servlet依赖
 
@@ -192,26 +222,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <!-->
 在JSP页面上引入JSTL标签库
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
--->
-```
-
-## Fastjson JSON 库
-
-是阿里巴巴提供的一个Java语言编写的高性能功能完善的 ，是目前Java语言中最快的 JSON 库，可以实现 Java 对象和 JSON 字符串的相互转换。
-
-```xml
-<dependency> 
-  <groupId>com.alibaba</groupId> 
-  <artifactId>fastjson</artifactId>
-  <version>1.2.62</version>
-</dependency>
-
-<!--
-Java对象转JSON
-String jsonStr = JSON.toJSONString(obj);
-
-JSON字符串转Java对象
-User user = JSON.parseObject(jsonStr, User.class);
 -->
 ```
 
@@ -278,7 +288,31 @@ User user = JSON.parseObject(jsonStr, User.class);
 </dependencies>
 ```
 
-## jackson
+## JSON相关
+
+### Fastjson  
+
+spring boot默认使用的json解析框架是jackson,使用fastjson需要配置
+
+是阿里巴巴提供的一个Java语言编写的高性能功能完善的 ，是目前Java语言中最快的 JSON 库，可以实现 Java 对象和 JSON 字符串的相互转换。
+
+```xml
+<dependency>
+  <groupId>com.alibaba</groupId>
+  <artifactId>fastjson</artifactId>
+  <version>1.2.76</version>
+</dependency>
+
+<!--
+Java对象转JSON
+String jsonStr = JSON.toJSONString(obj);
+
+JSON字符串转Java对象
+User user = JSON.parseObject(jsonStr, User.class);
+-->
+```
+
+### Jackson
 
 - 添加json数据转换相关坐标
 
@@ -399,10 +433,10 @@ CommonsLang是对JDK中java.lang包的补充，提供了各种各样的Utilities
 简化POJO实体类开发，@Data，@Slf4j
 
 ```xml
-<dependency>
+ 	<dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-    <version>1.18.12</version>
+    <version>1.18.20</version>
 </dependency>
 ```
 
@@ -418,7 +452,9 @@ CommonsLang是对JDK中java.lang包的补充，提供了各种各样的Utilities
 </dependency>
 ```
 
-## Spring Data Redis 
+## Redis相关
+
+### Spring Data Redis 
 
 Spring Data Redis 是 Spring 的一部分，提供了在 Spring 应用中通过简单的配置就可以访问 Redis 服务，对 Redis 底层开发包进行了高度封装。在 Spring 项目中，可以使用Spring Data Redis来简化 Redis 操作。
 
@@ -442,6 +478,26 @@ Spring Boot提供了对应的Starter，maven坐标：
 	<artifactId>spring-boot-starter-data-redis</artifactId>
 </dependency>
 ~~~
+
+###  SpringCache
+
+基于注解的缓存功能
+
+在项目中使用，我们会选择使用redis来做缓存，主要需要操作以下几步： 
+
+pom.xml
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+```
 
 # Maven插件
 
