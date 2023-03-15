@@ -376,20 +376,43 @@ Spring Cache只是提供了一层抽象，底层可以切换不同的cache实现
 
 例如，使用Redis作为缓存技术，只需要导入**Spring data Redis**的maven坐标即可。
 
-# 13. Path环境变量-JAVA_HOME
+# 13. Path环境变量&JAVA_HOME
 
-前面我们使用过JDK的bin目录下的javac和java命令，为什么我们能够直接使用呢？这里我们来讲解一下原理。而要讲解这个原理，我们就不得不提一下Path环境变量。
+## Path环境变量
 
-**Path环境变量的作用：**
+**path用于记住程序路径，方便在命令行窗口的任意目录启动程序。**
 
-- 它提供了windows命令行中指令的可执行文件(比如：.exe文件)路径，让我们在命令行中输入命令时，能够找到对应的可执行文件执行
-- 简单说：让命令在命令行中使用有效
+- 前面我们使用过JDK的bin目录下的javac和java命令，为什么我们能够直接使用呢？这里我们来讲解一下原理。而要讲解这个原理，我们就不得不提一下Path环境变量。
+- **Path环境变量的作用：**
+  - 它提供了windows命令行中指令的可执行文件(比如：.exe文件)路径，让我们在命令行中输入命令时，能够找到对应的可执行文件执行
+  - 简单说：让命令在命令行中使用有效
+  - windows有一种运行机制：当前执行的程序在当前目录中如果不存在时，就会在系统中一个名为path的环境变量指定的目录中寻找
+- 比如：
+  - 在Path环境变量中配置QQ软件的命令行方式启动
+  - C:\Program Files (x86)\Tencent\QQ\Bin
+  - 配置完毕之后，我们到DOS窗口中，通过“qq”指令，就可以启动QQ软件了。
+- 我们把.exe文件所在的路径配置到Path环境变量中，就可以使用.exe结尾的指令来启动程序了。
 
-比如：
+## JAVA_HOME
 
-- 在Path环境变量中配置QQ软件的命令行方式启动
-- C:\Program Files (x86)\Tencent\QQ\Bin
-- 配置完毕之后，我们到DOS窗口中，通过“qq”指令，就可以启动QQ软件了。
+- JAVA_HOME是为其他需要调用JDK的软件使用的。JAVA_HOME是一个约定，当其他软件需要JDK路径时，多数会默认从环境变量中提取JAVA_HOME这个变量，因此他被设置为JDK的路径。
+- 告诉操作系统JDK安装在了哪个位置（ 将来其他技术要通过这个环境变量找到JDK ）
+  注意：较新版的JDK只是自动配置了Path，没有自动配置JAVA_HOME。
 
-我们把.exe文件所在的路径配置到Path环境变量中，就可以使用.exe结尾的指令来启动程序了。
+# 14. 获取文件的相对路径
 
+- 获取未编译文件的相对路径
+
+- ```java
+  String property = System.getProperty("user.dir");
+  //URL resource = this.getClass().getResource("/");
+  String resourcesPath property = property + "\\src\\main\\resources";
+  File dataFile = new File(resourcesPath+"\\data\\data.txt");
+  ```
+
+  ![image-20230315175953609](Pic/image-20230315175953609.png)
+
+- String property = System.getProperty("user.dir");
+  URL resource = this.getClass().getResource("/");
+
+因为用resource获取的是编译过的路径，实际上一般用property编译前的路径（为了修改查看获取的文件更方便)
