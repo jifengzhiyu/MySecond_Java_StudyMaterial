@@ -272,6 +272,20 @@ https://www.cnblogs.com/unrealCat/p/16042181.html
 
 ![image-20230309170152380](Pic/image-20230309170152380.png)
 
+```SQL
+create database rw default charset utf8mb4;
+
+use rw;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
 - utf8mb4 -- UTF-8 Unicode和utf8 -- UTF-8 Unicode区别的整理
 
   https://blog.csdn.net/z947663039/article/details/84029573
